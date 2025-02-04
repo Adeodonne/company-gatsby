@@ -15,7 +15,7 @@ const config: GatsbyConfig = {
         {
             resolve: `gatsby-source-strapi`,
             options: {
-                apiURL: process.env.STRAPI_URL,
+                apiURL: process.env.STRAPI_URL || "http://localhost:1337",
                 collectionTypes: ["post", "blog", "our-value", "user"],
             },
         },

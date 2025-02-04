@@ -5,6 +5,7 @@ import {GetMainPagePostsResponse, MainPagePost} from "@/features/post/types/post
 
 const MainPagePosts: React.FC = () => {
 
+    const strapiUrl = process.env.STRAPI_URL || "";
     const data = useStaticQuery<GetMainPagePostsResponse>(graphql`
     query getMainPagePosts {
       allStrapiPost(filter: { onMainPage: { eq: true } }) {
@@ -55,7 +56,7 @@ const MainPagePosts: React.FC = () => {
 
                     <div className="h-[90%] w-[100%]">
                         <img
-                            src={process.env.STRAPI_URL + post.image.url}
+                            src={`${strapiUrl}${post.image.url}`}
                             alt={`${post.name} image`}
                             className="object-cover w-full h-full rounded-lg"
                         />

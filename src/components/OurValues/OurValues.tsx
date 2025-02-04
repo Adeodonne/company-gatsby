@@ -5,6 +5,8 @@ import OurValuesDialog from "@/components/OurValues/components/OurValuesDialog";
 import { GetOurValuesResponse, OurValue } from "@/features/values/types/values.types";
 
 const OurValues: React.FC = () => {
+    const strapiUrl = process.env.STRAPI_URL || "";
+
     const [currentValue, setCurrentValue] = useState<OurValue | null>(null);
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
@@ -35,7 +37,6 @@ const OurValues: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
                 {data.allStrapiOurValue.nodes.map((item) => {
                     const { name, description, image } = item;
-                    const imageUrl = process.env.STRAPI_URL + image.url;
 
                     return (
                         <div
@@ -47,7 +48,7 @@ const OurValues: React.FC = () => {
                                     {name}
                                 </h3>
                                 <img
-                                    src={imageUrl}
+                                    src={`${strapiUrl}${image.url}`}
                                     alt={name}
                                     className="w-full h-48 object-cover"
                                 />
